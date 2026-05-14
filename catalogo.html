@@ -10,11 +10,27 @@
     <header class="sticky top-0 z-50 bg-white border-b border-gray-100">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase">L'Élégance</a>
-            <div class="flex items-center space-x-6">
+            <button id="menu-toggle" class="md:hidden p-2 rounded border border-gray-200" aria-label="Abrir menú">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <div id="menu" class="hidden md:flex items-center space-x-6">
                 <a href="index.html" class="text-sm uppercase font-bold">Inicio</a>
-                <a href="carrito.html" class="relative">Carrito (3)</a>
+                <a href="catalogo.html" class="text-sm uppercase font-bold">Catálogo</a>
+                <a href="carrito.html" class="relative">Carrito</a>
             </div>
         </nav>
+        <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+            <a href="index.html" class="block py-2 text-sm uppercase font-bold">Inicio</a>
+            <a href="catalogo.html" class="block py-2 text-sm uppercase font-bold">Catálogo</a>
+            <a href="carrito.html" class="block py-2 text-sm uppercase font-bold">Carrito</a>
+        </div>
+        <script>
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        </script>
     </header>
 
     <main class="container mx-auto px-6 py-10">
@@ -37,35 +53,37 @@
             <p id="resultsCount" class="ml-auto text-sm text-gray-500 self-center">Mostrando 20 productos</p>
         </section>
 
-        <div id="productsGrid" class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"></div>
+        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"></div>
+        <p id="emptyState" class="hidden mt-10 text-center text-sm text-gray-500 uppercase tracking-wider">No se encontraron productos con esos filtros</p>
         <script>
             const products = [
-                { id: 1, name: "Producto Elegante 1", category: "Calzado", size: "S", price: "75.00€" },
-                { id: 2, name: "Producto Elegante 2", category: "Calzado", size: "M", price: "75.00€" },
-                { id: 3, name: "Producto Elegante 3", category: "Calzado", size: "L", price: "75.00€" },
-                { id: 4, name: "Producto Elegante 4", category: "Calzado", size: "XL", price: "75.00€" },
-                { id: 5, name: "Producto Elegante 5", category: "Calzado", size: "S", price: "75.00€" },
-                { id: 6, name: "Producto Elegante 6", category: "Camisas", size: "M", price: "75.00€" },
-                { id: 7, name: "Producto Elegante 7", category: "Camisas", size: "L", price: "75.00€" },
-                { id: 8, name: "Producto Elegante 8", category: "Camisas", size: "XL", price: "75.00€" },
-                { id: 9, name: "Producto Elegante 9", category: "Camisas", size: "S", price: "75.00€" },
-                { id: 10, name: "Producto Elegante 10", category: "Camisas", size: "M", price: "75.00€" },
-                { id: 11, name: "Producto Elegante 11", category: "Pantalones", size: "L", price: "75.00€" },
-                { id: 12, name: "Producto Elegante 12", category: "Pantalones", size: "XL", price: "75.00€" },
-                { id: 13, name: "Producto Elegante 13", category: "Pantalones", size: "S", price: "75.00€" },
-                { id: 14, name: "Producto Elegante 14", category: "Pantalones", size: "M", price: "75.00€" },
-                { id: 15, name: "Producto Elegante 15", category: "Pantalones", size: "L", price: "75.00€" },
-                { id: 16, name: "Producto Elegante 16", category: "Calzado", size: "XL", price: "75.00€" },
-                { id: 17, name: "Producto Elegante 17", category: "Camisas", size: "S", price: "75.00€" },
-                { id: 18, name: "Producto Elegante 18", category: "Pantalones", size: "M", price: "75.00€" },
-                { id: 19, name: "Producto Elegante 19", category: "Calzado", size: "L", price: "75.00€" },
-                { id: 20, name: "Producto Elegante 20", category: "Camisas", size: "XL", price: "75.00€" }
+                { id: 1, ref: "REF-1001", name: "Producto Elegante 1", category: "Calzado", size: "S", price: "75.00" },
+                { id: 2, ref: "REF-1002", name: "Producto Elegante 2", category: "Calzado", size: "M", price: "75.00" },
+                { id: 3, ref: "REF-1003", name: "Producto Elegante 3", category: "Calzado", size: "L", price: "75.00" },
+                { id: 4, ref: "REF-1004", name: "Producto Elegante 4", category: "Calzado", size: "XL", price: "75.00" },
+                { id: 5, ref: "REF-1005", name: "Producto Elegante 5", category: "Calzado", size: "S", price: "75.00" },
+                { id: 6, ref: "REF-1006", name: "Producto Elegante 6", category: "Camisas", size: "M", price: "75.00" },
+                { id: 7, ref: "REF-1007", name: "Producto Elegante 7", category: "Camisas", size: "L", price: "75.00" },
+                { id: 8, ref: "REF-1008", name: "Producto Elegante 8", category: "Camisas", size: "XL", price: "75.00" },
+                { id: 9, ref: "REF-1009", name: "Producto Elegante 9", category: "Camisas", size: "S", price: "75.00" },
+                { id: 10, ref: "REF-1010", name: "Producto Elegante 10", category: "Camisas", size: "M", price: "75.00" },
+                { id: 11, ref: "REF-1011", name: "Producto Elegante 11", category: "Pantalones", size: "L", price: "75.00" },
+                { id: 12, ref: "REF-1012", name: "Producto Elegante 12", category: "Pantalones", size: "XL", price: "75.00" },
+                { id: 13, ref: "REF-1013", name: "Producto Elegante 13", category: "Pantalones", size: "S", price: "75.00" },
+                { id: 14, ref: "REF-1014", name: "Producto Elegante 14", category: "Pantalones", size: "M", price: "75.00" },
+                { id: 15, ref: "REF-1015", name: "Producto Elegante 15", category: "Pantalones", size: "L", price: "75.00" },
+                { id: 16, ref: "REF-1016", name: "Producto Elegante 16", category: "Calzado", size: "XL", price: "75.00" },
+                { id: 17, ref: "REF-1017", name: "Producto Elegante 17", category: "Camisas", size: "S", price: "75.00" },
+                { id: 18, ref: "REF-1018", name: "Producto Elegante 18", category: "Pantalones", size: "M", price: "75.00" },
+                { id: 19, ref: "REF-1019", name: "Producto Elegante 19", category: "Calzado", size: "L", price: "75.00" },
+                { id: 20, ref: "REF-1020", name: "Producto Elegante 20", category: "Camisas", size: "XL", price: "75.00" }
             ];
 
             const categoryFilter = document.getElementById("categoryFilter");
             const sizeFilter = document.getElementById("sizeFilter");
             const resultsCount = document.getElementById("resultsCount");
             const productsGrid = document.getElementById("productsGrid");
+            const emptyState = document.getElementById("emptyState");
             const productImage = "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=400&auto=format&fit=crop";
 
             function renderProducts(list) {
@@ -76,12 +94,17 @@
                                 <img src="${productImage}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             </div>
                             <h3 class="font-bold text-sm uppercase" itemprop="name">${product.name}</h3>
-                            <p class="text-gray-600 text-sm">${product.price}</p>
+                            <p class="text-gray-400 text-xs mb-1" itemprop="productID">${product.ref}</p>
+                            <p class="text-gray-600 text-sm" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                                <span itemprop="price">${product.price}</span>€
+                                <meta itemprop="priceCurrency" content="EUR">
+                            </p>
                         </a>
                     </article>
                 `).join("");
 
                 resultsCount.textContent = `Mostrando ${list.length} productos`;
+                emptyState.classList.toggle("hidden", list.length !== 0);
             }
 
             function applyFilters() {

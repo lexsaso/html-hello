@@ -3,121 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgentHub Admin Dashboard</title>
+    <title>L'Élégance | Moda Francesa</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class"
-        };
-    </script>
-    <style>
-        .collapsible-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-
-        .collapsible-content.open {
-            max-height: 240px;
-        }
-    </style>
 </head>
-<body class="bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-gray-100 font-sans transition-colors duration-200">
-
-    <div class="flex h-screen overflow-hidden">
-        <nav class="hidden md:flex w-64 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex-col">
-            <div class="p-6">
-                <h1 class="text-2xl font-bold text-blue-600 dark:text-blue-400">AgentHub</h1>
+<body class="bg-white text-gray-900">
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-100">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase">L'Élégance</a>
+            <button id="menu-toggle" class="md:hidden p-2 rounded border border-gray-200" aria-label="Abrir menú">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <div id="menu" class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="text-sm uppercase font-bold">Inicio</a>
+                <a href="catalogo.html" class="text-sm uppercase font-bold">Catálogo</a>
+                <a href="carrito.html" class="relative">Carrito</a>
             </div>
-            <ul class="flex-1 px-4 space-y-2 overflow-y-auto">
-                <li>
-                    <button onclick="showSection('dashboard')" class="nav-link w-full text-left px-4 py-2 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-medium transition-colors" data-section="dashboard">
-                        Dashboard
-                    </button>
-                </li>
-                <li>
-                    <button onclick="showSection('usuarios')" class="nav-link w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors" data-section="usuarios">
-                        Usuarios
-                    </button>
-                </li>
-                <li>
-                    <button onclick="showSection('agentes')" class="nav-link w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors" data-section="agentes">
-                        Agentes
-                    </button>
-                </li>
-                <li>
-                    <button onclick="showSection('skills')" class="nav-link w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors" data-section="skills">
-                        Skills
-                    </button>
-                </li>
-                <li>
-                    <button onclick="showSection('contratos')" class="nav-link w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors" data-section="contratos">
-                        Contrataciones
-                    </button>
-                </li>
-                <li>
-                    <button onclick="showSection('errores')" class="nav-link w-full text-left px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors" data-section="errores">
-                        Log de Errores
-                    </button>
-                </li>
-            </ul>
         </nav>
+        <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+            <a href="index.html" class="block py-2 text-sm uppercase font-bold">Inicio</a>
+            <a href="catalogo.html" class="block py-2 text-sm uppercase font-bold">Catálogo</a>
+            <a href="carrito.html" class="block py-2 text-sm uppercase font-bold">Carrito</a>
+        </div>
+        <script>
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        </script>
+    </header>
 
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <header class="h-16 bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 flex items-center justify-between px-4 md:px-8">
-                <div class="flex items-center gap-3">
-                    <button class="md:hidden p-2 rounded-lg border border-gray-200 dark:border-slate-700" onclick="toggleMobileMenu()">Menu</button>
-                    <h2 id="section-title" class="text-xl font-semibold">Dashboard</h2>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors" aria-label="Cambiar tema">
-                        <span id="theme-icon">🌙</span>
-                    </button>
-                    <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">A</div>
-                </div>
-            </header>
+    <main class="container mx-auto px-6 py-16 text-center">
+        <h1 class="text-5xl font-extrabold mb-6 uppercase tracking-tighter">L'Élégance</h1>
+        <p class="text-lg text-gray-600 mb-10">Moda francesa contemporánea, elegancia atemporal.<br>Descubre nuestra nueva colección.</p>
+        <a href="catalogo.html" class="inline-block bg-black text-white px-8 py-4 rounded uppercase font-bold text-lg tracking-widest hover:bg-gray-800 transition">Ver Catálogo</a>
+        <div class="mt-16 flex flex-col md:flex-row items-center justify-center gap-8">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=400&auto=format&fit=crop" alt="Colección" class="w-64 h-80 object-cover rounded shadow">
+            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&auto=format&fit=crop" alt="Colección" class="w-64 h-80 object-cover rounded shadow">
+        </div>
+    </main>
 
-            <div id="mobile-nav" class="md:hidden hidden bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 px-4 py-3">
-                <div class="grid grid-cols-2 gap-2">
-                    <button onclick="showSection('dashboard'); closeMobileMenu()" class="text-left px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700">Dashboard</button>
-                    <button onclick="showSection('usuarios'); closeMobileMenu()" class="text-left px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700">Usuarios</button>
-                    <button onclick="showSection('agentes'); closeMobileMenu()" class="text-left px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700">Agentes</button>
-                    <button onclick="showSection('skills'); closeMobileMenu()" class="text-left px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700">Skills</button>
-                    <button onclick="showSection('contratos'); closeMobileMenu()" class="text-left px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700">Contrataciones</button>
-                    <button onclick="showSection('errores'); closeMobileMenu()" class="text-left px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700">Log de Errores</button>
-                </div>
-            </div>
-
-            <main class="flex-1 overflow-y-auto p-4 md:p-8">
-                <section id="dashboard" class="content-section space-y-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border-l-4 border-green-500">
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Ingresos Totales</p>
-                            <p class="text-2xl font-bold">$50,200.00</p>
-                        </div>
-                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border-l-4 border-red-400">
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Perdida por Descuentos</p>
-                            <p class="text-2xl font-bold">$1,200.50</p>
-                        </div>
-                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border-l-4 border-blue-500">
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Agentes Activos</p>
-                            <p class="text-2xl font-bold">124</p>
-                        </div>
-                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border-l-4 border-orange-500">
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Agentes Fallando</p>
-                            <p class="text-2xl font-bold text-orange-600 dark:text-orange-400">3</p>
-                        </div>
-                    </div>
-                    <div class="w-full h-64 border-2 border-dashed border-gray-300 dark:border-slate-700 rounded-xl flex items-center justify-center bg-gray-50/50 dark:bg-slate-800/50">
-                        <span class="text-gray-400 font-medium text-center px-4">Grafico de Actividad Semanal (Visualizacion proximamente)</span>
-                    </div>
-                </section>
-
-                <section id="usuarios" class="content-section hidden">
-                    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden">
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse min-w-[780px]">
-                                <thead class="bg-gray-50 dark:bg-slate-700/50">
+    <footer class="bg-gray-50 py-10 mt-20 text-center text-xs text-gray-400 uppercase tracking-widest border-t">
+        L'Élégance © 2026 - París, Francia
+    </footer>
+</body>
+</html>
                                     <tr>
                                         <th class="p-4 font-semibold border-b dark:border-slate-700">Nombre</th>
                                         <th class="p-4 font-semibold border-b dark:border-slate-700">Email</th>

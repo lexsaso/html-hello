@@ -2,38 +2,88 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Checkout | L'Élégance</title>
 </head>
-<body class="bg-white">
+<body class="bg-white text-gray-900">
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-100">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase">L'Élégance</a>
+            <button id="menu-toggle" class="md:hidden p-2 rounded border border-gray-200" aria-label="Abrir menú">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <div id="menu" class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="text-sm uppercase font-bold">Inicio</a>
+                <a href="catalogo.html" class="text-sm uppercase font-bold">Catálogo</a>
+                <a href="carrito.html" class="relative">Carrito</a>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+            <a href="index.html" class="block py-2 text-sm uppercase font-bold">Inicio</a>
+            <a href="catalogo.html" class="block py-2 text-sm uppercase font-bold">Catálogo</a>
+            <a href="carrito.html" class="block py-2 text-sm uppercase font-bold">Carrito</a>
+        </div>
+        <script>
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        </script>
+    </header>
     <main class="max-w-3xl mx-auto px-6 py-16">
         <h1 class="text-2xl font-bold uppercase mb-12 text-center">Finalizar Pedido</h1>
         
-        <form class="space-y-12">
-            <section>
-                <h2 class="font-bold uppercase text-sm mb-6 flex items-center"><span class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center mr-2 text-[10px]">1</span> Datos Personales</h2>
-                <div class="grid grid-cols-2 gap-4">
-                    <input type="text" placeholder="Nombre" class="border p-3 w-full outline-none focus:border-black transition">
-                    <input type="email" placeholder="Email" class="border p-3 w-full outline-none focus:border-black transition">
+        <form class="space-y-12" method="post" action="#" aria-label="Formulario de checkout">
+            <section aria-labelledby="paso-1">
+                <h2 id="paso-1" class="font-bold uppercase text-sm mb-6 flex items-center"><span class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center mr-2 text-[10px]">1</span> Datos Personales</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="nombre" class="block text-xs uppercase font-bold mb-2">Nombre</label>
+                        <input id="nombre" name="nombre" type="text" autocomplete="name" required class="border p-3 w-full outline-none focus:border-black transition">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-xs uppercase font-bold mb-2">Email</label>
+                        <input id="email" name="email" type="email" autocomplete="email" required class="border p-3 w-full outline-none focus:border-black transition">
+                    </div>
                 </div>
             </section>
 
-            <section>
-                <h2 class="font-bold uppercase text-sm mb-6 flex items-center"><span class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center mr-2 text-[10px]">2</span> Dirección de Entrega</h2>
-                <input type="text" placeholder="Calle y número" class="border p-3 w-full mb-4">
-                <div class="grid grid-cols-2 gap-4">
-                    <input type="text" placeholder="Ciudad" class="border p-3 w-full">
-                    <input type="text" placeholder="Código Postal" class="border p-3 w-full">
+            <section aria-labelledby="paso-2">
+                <h2 id="paso-2" class="font-bold uppercase text-sm mb-6 flex items-center"><span class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center mr-2 text-[10px]">2</span> Dirección de Entrega</h2>
+                <div>
+                    <label for="direccion" class="block text-xs uppercase font-bold mb-2">Calle y número</label>
+                    <input id="direccion" name="direccion" type="text" autocomplete="street-address" required class="border p-3 w-full mb-4">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="ciudad" class="block text-xs uppercase font-bold mb-2">Ciudad</label>
+                        <input id="ciudad" name="ciudad" type="text" autocomplete="address-level2" required class="border p-3 w-full">
+                    </div>
+                    <div>
+                        <label for="codigo-postal" class="block text-xs uppercase font-bold mb-2">Código Postal</label>
+                        <input id="codigo-postal" name="codigoPostal" type="text" inputmode="numeric" autocomplete="postal-code" required class="border p-3 w-full">
+                    </div>
                 </div>
             </section>
 
-            <section>
-                <h2 class="font-bold uppercase text-sm mb-6 flex items-center"><span class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center mr-2 text-[10px]">3</span> Pago con Tarjeta</h2>
+            <section aria-labelledby="paso-3">
+                <h2 id="paso-3" class="font-bold uppercase text-sm mb-6 flex items-center"><span class="bg-black text-white w-6 h-6 rounded-full flex items-center justify-center mr-2 text-[10px]">3</span> Pago con Tarjeta</h2>
                 <div class="border p-6 rounded bg-gray-50">
-                    <input type="text" placeholder="Número de tarjeta" class="border p-3 w-full mb-4 bg-white">
-                    <div class="grid grid-cols-2 gap-4">
-                        <input type="text" placeholder="MM/YY" class="border p-3 w-full bg-white">
-                        <input type="text" placeholder="CVV" class="border p-3 w-full bg-white">
+                    <div>
+                        <label for="tarjeta" class="block text-xs uppercase font-bold mb-2">Número de tarjeta</label>
+                        <input id="tarjeta" name="tarjeta" type="text" inputmode="numeric" autocomplete="cc-number" required class="border p-3 w-full mb-4 bg-white">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="expiracion" class="block text-xs uppercase font-bold mb-2">MM/YY</label>
+                            <input id="expiracion" name="expiracion" type="text" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" required class="border p-3 w-full bg-white">
+                        </div>
+                        <div>
+                            <label for="cvv" class="block text-xs uppercase font-bold mb-2">CVV</label>
+                            <input id="cvv" name="cvv" type="text" inputmode="numeric" autocomplete="cc-csc" required class="border p-3 w-full bg-white">
+                        </div>
                     </div>
                 </div>
             </section>
